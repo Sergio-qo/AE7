@@ -13,6 +13,10 @@ export class InicioPage implements OnInit {
   
   id:string;
 
+  verCantidad(){
+    alert(this._usuarioService.cantidadMeGusta("usu1"));
+  }
+
   ngOnInit() {
     let nomusu = this._activatedRoute.snapshot.paramMap.get("nomusu");
     let ref = this._usuarioService.getUsuarios();

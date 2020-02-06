@@ -4,12 +4,13 @@ export interface IUsuario{
 }
 
 export interface IProducto{
-    //"key":string,
+    "key":string,
     "nombre" : string,
     "descripcion" : string,
     "categoria" : string,
     "precio" : number,
-    "uid" : string //añadido
+    "uid" : string, //añadido
+    "megusta":boolean
 }
 
 export interface IKey extends IProducto{

@@ -48,7 +48,7 @@ export class ProductoService{
     }*/
 
     constructor(private _db:AngularFireDatabase){}
-
+key:string = "";
     setProducto(producto:(ITecnologia | IInmobiliaria | IHogar | IMotor)){
         let ref = this._db.database.ref("productos");
         ref.push(producto);
@@ -62,6 +62,29 @@ export class ProductoService{
     //Funcion getProducto en producto.service.ts
     getProducto(key){
         let ref = this._db.database.ref("productos/" + key);
+        return ref;
+    }
+
+    meGusta(item, uid) {
+        let ref = this._db.database.ref("favoritos/" + uid);
+        ref.push({"clave":item.key});
+      }
+
+    yaNoMeGusta(item, uid){
+        let ref = this._db.database.ref("favoritos/" + uid);
+        ref.once("value", snapshot=>{
+            snapshot.forEach(child => {
+                if(child.val().clave == item.key){
+                    this.key = child.key;
+                    console.log(child.key);
+                    this._db.database.ref("favoritos/" + uid + "/" + this.key).remove();
+                } 
+            });
+        });
+    }
+
+    getFavoritos(){
+        let ref = this._db.database.ref("favoritos");
         return ref;
     }
 }

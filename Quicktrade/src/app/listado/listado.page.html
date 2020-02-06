@@ -8,6 +8,15 @@
   <div *ngFor="let item of productos">
     <ion-text>Nombre: {{item.nombre}} </ion-text>
     <ion-text>Precio: {{item.precio}}</ion-text>
-    <ion-button [routerLink]="['/detalles', item.key]">Detalles</ion-button>
+    <div>
+      <ion-button [routerLink]="['/detalles', item.key]">Detalles</ion-button>
+    </div>
+    <!--<div *ngIf="!item.meGusta">-->
+      <ion-button (click)="meGusta(item)">Me gusta</ion-button>
+    <!--</div>-->
+
+    <!--<div *ngIf="!item.meGusta">-->
+      <ion-button (click)="yaNoMeGusta(item)">Ya no me gusta</ion-button>
+    <!--</div>-->
   </div>
 </ion-content>
